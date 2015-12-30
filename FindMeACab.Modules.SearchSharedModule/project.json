@@ -1,0 +1,9 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "Microsoft.Azure.Search": "0.13.0-preview"
+  },
+  "frameworks": {
+    ".NETPortable,Version=v4.5,Profile=Profile7": {}
+  }
+}

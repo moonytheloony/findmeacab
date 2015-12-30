@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en" Name="FindMeACab_en">
+    <AppName>FindCab</AppName>
+    <Example>FindCab in Delhi</Example>
+
+    <Command Name="findCabInArea">
+      <Example>FindCab in Delhi</Example>
+      <ListenFor RequireAppName="BeforePhrase"> in {area}</ListenFor>
+      <Feedback>Searching for cars in {area} </Feedback>
+      <VoiceCommandService Target="CabSearchBackgroundService"/>
+    </Command>
+
+    <Command Name="findCabNearby">
+      <Example>FindCab nearby</Example>
+      <ListenFor RequireAppName="BeforePhrase"> nearby</ListenFor>
+      <Feedback> Finding a cab nearby</Feedback>
+      <VoiceCommandService Target="CabSearchBackgroundService"/>
+    </Command>
+
+    <PhraseTopic Label="area" Scenario="Search"/>
+  </CommandSet>
+
+</VoiceCommands>

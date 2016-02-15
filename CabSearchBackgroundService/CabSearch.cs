@@ -1,21 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.AppService;
-using Windows.ApplicationModel.Background;
-using Windows.ApplicationModel.VoiceCommands;
-using Windows.Devices.Geolocation;
-
-using Model;
-using BingMapsSharedModule;
-using SearchSharedModule;
-
+﻿// ***********************************************************************
+// Assembly         : CabSearchBackgroundService
+// Author           : rahulrai
+// Created          : 02-15-2016
+//
+// Last Modified By : rahulrai
+// Last Modified On : 02-15-2016
+// ***********************************************************************
+// <copyright file="CabSearch.cs" company="Rahul Rai">
+//     Copyright ©  2015
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 namespace CabSearchBackgroundService
 {
+    #region
+
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Windows.ApplicationModel.AppService;
+    using Windows.ApplicationModel.Background;
+    using Windows.ApplicationModel.VoiceCommands;
+    using Windows.Devices.Geolocation;
+
+    using BingMapsSharedModule;
+
+    using Model;
+
+    using SearchSharedModule;
+
+    #endregion
+
+    /// <summary>
+    /// Class CabSearch. This class cannot be inherited.
+    /// </summary>
     public sealed class CabSearch : IBackgroundTask
     {
         #region Constants
@@ -60,7 +80,7 @@ namespace CabSearchBackgroundService
         #region Public Methods and Operators
 
         /// <summary>
-        /// Runs the specified task instance.
+        ///     Runs the specified task instance.
         /// </summary>
         /// <param name="taskInstance">The task instance.</param>
         public async void Run(IBackgroundTaskInstance taskInstance)
@@ -110,7 +130,7 @@ namespace CabSearchBackgroundService
         #region Methods
 
         /// <summary>
-        /// Searches the cabs in area.
+        ///     Searches the cabs in area.
         /// </summary>
         /// <param name="area">The area.</param>
         /// <returns>System.Threading.Tasks.Task.</returns>
@@ -126,7 +146,14 @@ namespace CabSearchBackgroundService
                 return;
             }
 
-            var tilelist = searchResult.Select(result => new VoiceCommandContentTile { ContentTileType = VoiceCommandContentTileType.TitleOnly, Title = result.VehicleId }).ToList();
+            var tilelist =
+                searchResult.Select(
+                    result =>
+                    new VoiceCommandContentTile
+                        {
+                            ContentTileType = VoiceCommandContentTileType.TitleOnly,
+                            Title = result.VehicleId
+                        }).ToList();
             var successmessage = new VoiceCommandUserMessage();
             successmessage.DisplayMessage = successmessage.SpokenMessage = $"Found the following cabs in {area}...";
             var response = VoiceCommandResponse.CreateResponse(successmessage, tilelist);
@@ -134,7 +161,7 @@ namespace CabSearchBackgroundService
         }
 
         /// <summary>
-        /// Searches the cabs nearby.
+        ///     Searches the cabs nearby.
         /// </summary>
         /// <returns>System.Threading.Tasks.Task.</returns>
         private async Task SearchCabsNearby()
@@ -142,10 +169,10 @@ namespace CabSearchBackgroundService
             var geolocator = new Geolocator();
             var pos = await geolocator.GetGeopositionAsync().AsTask();
             var locationPoint = new LocationPoint
-            {
-                Latitude = pos.Coordinate.Point.Position.Latitude,
-                Longitude = pos.Coordinate.Point.Position.Longitude
-            };
+                                    {
+                                        Latitude = pos.Coordinate.Point.Position.Latitude,
+                                        Longitude = pos.Coordinate.Point.Position.Longitude
+                                    };
             var searchResult = this.searchClient.SearchDocuments<GpsSensorRecord>(
                 "*",
                 SearchDocument.FilterTextForDistanceFromPoint("geoCoordinates", locationPoint, 50000));
@@ -155,7 +182,14 @@ namespace CabSearchBackgroundService
                 return;
             }
 
-            var tilelist = searchResult.Select(result => new VoiceCommandContentTile { ContentTileType = VoiceCommandContentTileType.TitleOnly, Title = result.VehicleId }).ToList();
+            var tilelist =
+                searchResult.Select(
+                    result =>
+                    new VoiceCommandContentTile
+                        {
+                            ContentTileType = VoiceCommandContentTileType.TitleOnly,
+                            Title = result.VehicleId
+                        }).ToList();
             var successmessage = new VoiceCommandUserMessage();
             successmessage.DisplayMessage = successmessage.SpokenMessage = "Found the following cabs near you...";
             var response = VoiceCommandResponse.CreateResponse(successmessage, tilelist);
@@ -163,7 +197,7 @@ namespace CabSearchBackgroundService
         }
 
         /// <summary>
-        /// Sends the error message asynchronous.
+        ///     Sends the error message asynchronous.
         /// </summary>
         /// <param name="errortext">The errortext.</param>
         /// <returns>System.Threading.Tasks.Task.</returns>
@@ -176,7 +210,7 @@ namespace CabSearchBackgroundService
         }
 
         /// <summary>
-        /// Sends the progress message asynchronous.
+        ///     Sends the progress message asynchronous.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <returns>System.Threading.Tasks.Task.</returns>

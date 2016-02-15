@@ -21,6 +21,11 @@ namespace FindMeACab.Basics.Model
     {
         #region Constructors and Destructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GpsSensorRecord"/> class.
+        /// </summary>
+        /// <param name="vehicleId">The vehicle identifier.</param>
+        /// <param name="geoCoordinates">The geo coordinates.</param>
         public GpsSensorRecord(string vehicleId, dynamic geoCoordinates)
         {
             this.VehicleId = vehicleId;
@@ -32,8 +37,16 @@ namespace FindMeACab.Basics.Model
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets or sets the geo coordinates.
+        /// </summary>
+        /// <value>The geo coordinates.</value>
         public dynamic GeoCoordinates { get; set; }
 
+        /// <summary>
+        /// Gets or sets the is deleted.
+        /// </summary>
+        /// <value>The is deleted.</value>
         public string IsDeleted { get; set; }
 
         /// <summary>

@@ -101,12 +101,19 @@ namespace FindMeACab.Modules.SearchSharedModule
             }
         }
 
-        #endregion
-
+        /// <summary>
+        /// Filters the text for distance from point.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="locationPoint">The location point.</param>
+        /// <param name="distanceFromPoint">The distance from point.</param>
+        /// <returns>System.String.</returns>
         public static string FilterTextForDistanceFromPoint(string fieldName, LocationPoint locationPoint, int distanceFromPoint)
         {
             var filter = $"geo.distance({fieldName}, geography'POINT({locationPoint.Longitude} {locationPoint.Latitude})') le {distanceFromPoint}";
             return filter;
         }
+
+        #endregion
     }
 }

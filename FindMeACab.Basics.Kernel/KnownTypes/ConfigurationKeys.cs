@@ -46,6 +46,9 @@ namespace FindMeACab.Basics.Kernel.KnownTypes
         /// </summary>
         public const string SearchServiceKey = nameof(SearchServiceKey);
 
+        /// <summary>
+        /// The is enabled
+        /// </summary>
         public const string IsEnabled = nameof(IsEnabled);
 
         #endregion

@@ -44,17 +44,17 @@ namespace CabSearchBackgroundService
         /// The bing API key
         /// </summary>
         private const string BingApiKey =
-            "jDUmcyOiPXX8FZrvz4Z0~c4XBE-mSyv1-_X3xELgh1Q~AkvQ2mTw1MgGZXTCg8GZgwFOs2uewxR3r6ykIsUoEJ0HeXZ4vaAuJELO3LCM6mSm";
+            "YOUR BING API KEY";
 
         /// <summary>
         /// The search service key
         /// </summary>
-        private const string SearchServiceKey = "29DBEB81ABBDA405EBDDD895636EAAB7";
+        private const string SearchServiceKey = "SEARCH SERVICE KEY";
 
         /// <summary>
         /// The search service name
         /// </summary>
-        private const string SearchServiceName = "findmeacab";
+        private const string SearchServiceName = "SEARCH SERVICE NAME";
 
         #endregion
 

@@ -1,3 +1,4 @@
+Rad more about this project here: http://rahulrai.in/post/hire-a-cab-using-cortana-and-azure-search
 ------------------
 Setup Steps
 ------------------
